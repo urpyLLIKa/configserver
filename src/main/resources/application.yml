@@ -1,0 +1,53 @@
+server:
+  port: 8888
+#  tomcat:
+#    accesslog:
+#      enabled: true
+#      directory: "/dev"
+#      prefix: stdout
+#      buffered: false
+#      suffix:
+#      file-date-format:
+#      basedir: .
+#      pattern: "{ 'type': 'access', 'ip': '%h', 'URL': '%r', 'status', '%s', 'size': '%b', 'time': '%t', 'user': '%l'}"
+
+management:
+  endpoint:
+    health:
+      enabled: true
+logging:
+  level:
+    com.netflix.discovery: 'OFF'
+    org.springframework.cloud: 'DEBUG'
+    org.springframework.cloud.configserver.handler.RoutePredicateHandlerMapping: 'DEBUG'
+
+spring:
+  cloud:
+    bus:
+      enabled: false
+    bootstrap:
+      enabled: false
+    discovery:
+     enabled: false
+    consul:
+      enabled: false
+      config:
+        enabled: false
+    config:
+      discovery:
+        enabled: false
+      server:
+        git:
+          uri: https://github.com/spring-cloud-samples/config-repo
+          basedir: target/config
+          default-label: main
+          searchPaths: dom
+rabbitmq:
+  autoStarting: false
+
+---
+spring:
+  config:
+    activate:
+      on-profile: cloud
+#  profiles: cloud
